@@ -13,12 +13,12 @@ La cuota variable depende de la tabla:
 | Escala de Pago | Número de Cursos      | Monto   |
 ----------------------------------------------------
 |                | Entre 1 y 5 Inclusive | B/. 400 |
-| A              | Entre 6 y 8 Inclusive | B/. 600 |  
+| A              | Entre 6 y 8 Inclusive | B/. 600 |
 |                | Más de 8              | B/. 900 |
 ----------------------------------------------------
 |                | Entre 1 y 3 Inclusive | B/. 350 |
 | B              | Entre 4 y 7 Inclusive | B/. 500 |
-|                | Más de 7              | B/. 700 | 
+|                | Más de 7              | B/. 700 |
 ----------------------------------------------------
 |                | Entre 1 y 3 Inclusive | B/. 320 |
 | C              | Entre 4 y 7 Inclusive | B/. 480 |
@@ -33,50 +33,46 @@ La cuota variable depende de la tabla:
 
 
 def main():
-    escala = input("Ingrese la escala (A, B, C, D): ")
-    num_mensual = int(input("Inserte el número de cursos: "))
-    pago_mensual = float(input("¿Cuánto asciende el pago mensual?: "))
+    escala = input("Ingrese la escala de pago (A/B/C/D): ")
+    cursos = int(input("Inserte el número de cursos: "))
 
-    cuota_fija = 0.00
-    mensualidad = cuota_fija + 350.00
+    CUOTA_FIJA = 350.00
+    cuota_variable = None
+    print()
 
-    if escala == "A":
-        print()
-        if num_mensual <= 5:
-            cuota_fija = 400.00
-        elif num_mensual <= 6:
-            cuota_fija = 600.00
-        else:
-            cuota_fija = 900.00
+    match escala.strip().upper():
+        case "A":
+            if cursos >= 1 and cursos <= 5:
+                cuota_variable = 400.00
+            elif cursos >= 6 and cursos <= 8:
+                cuota_variable = 600.00
+            elif cursos > 8:
+                cuota_variable = 900.00
+        case "B":
+            if cursos >= 1 and cursos <= 3:
+                cuota_variable = 350.00
+            elif cursos >= 4 and cursos <= 7:
+                cuota_variable = 500.00
+            elif cursos > 7:
+                cuota_variable = 700.00
+        case "C":
+            if cursos >= 1 and cursos <= 3:
+                cuota_variable = 320.00
+            elif cursos >= 4 and cursos <= 7:
+                cuota_variable = 480.00
+            elif cursos > 7:
+                cuota_variable = 685.00
+        case "D":
+            if cursos >= 1 and cursos <= 4:
+                cuota_variable = 310.00
+            elif cursos >= 5 and cursos <= 8:
+                cuota_variable = 475.00
+            elif cursos > 8:
+                cuota_variable = 680.00
 
-    if escala == "B":
-        print()
-        if num_mensual <= 1:
-            cuota_fija = 350.00
-        elif num_mensual <= 4:
-            cuota_fija = 500.00
-        else:
-            cuota_fija = 700.00
-    
-    if escala == "C":
-        print()
-        if num_mensual <= 1:
-            cuota_fija = 320.00
-        elif num_mensual <= 4:
-            cuota_fija = 480.00
-        else:
-            cuota_fija = 680.00
-    
-    if escala == "D":
-        print()
-        if num_mensual <= 1:
-            cuota_fija = 310.00
-        elif num_mensual <= 5:
-            cuota_fija = 475.00
-        else:
-            cuota_fija = 680.00
+    mensualidad = CUOTA_FIJA + cuota_variable
+    print(f"Su mensualidad es de ${mensualidad}")
 
 
-if __name__ == "__name__":
+if __name__ == "__main__":
     main()
-
