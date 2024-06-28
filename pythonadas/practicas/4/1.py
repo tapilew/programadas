@@ -17,17 +17,16 @@
 
 """
 var
-    Real: ahorro
+    Real: ahorro, dias_mes
     Entero: dias_mes
 Inicio
 Hacer ahorro <- 0.00
 Escribir "¿Cuántos días tiene este mes?: "
 Leer dias_mes
-Repetir con dia desde 1 hasta menor que (dias_mes + 1)
-    Hacer input <- 0
-    Escribir "¿Cuánto has ahorrado el día ", dia, "?: $"
-    Leer input
-    Hacer ahorro <- ahorro + input
+Escribir "¿Cuánto desea ahorrar cada día?: "
+Leer ahorro_diario
+Repetir con dia desde 0 hasta menor que dias_mes
+    Hacer ahorro <- ahorro + ahorro_diario
 Fin Repetir
 Escribir "¡Has ahorrado $", ahorro, " en el mes!"
 Fin
@@ -36,12 +35,14 @@ Fin
 def main():
     ahorro = 0.00
     dias_mes = int(input("¿Cuántos días tiene este mes?: "))
+    ahorro_diario = float(input("¿Cuánto estás dispuesto a ahorrar cada día del mes?: ")) 
     print()
     # ciclo - desde 1 hasta (dias_mes + 1) (day = 1; day < (dias_mes + 1))
-    for dia in range(1, dias_mes + 1):
-        ahorro += float(input(f"¿Cuánto has ahorrado el día {dia}?: $"))
-    print(f"\n¡Has ahorrado ${ahorro} en el mes!")
+    for dia in range(dias_mes):
+        ahorro += ahorro_diario
+    print(f"¡Has ahorrado ${ahorro} en el mes!")
 
 
 if __name__ == "__main__":
     main()
+

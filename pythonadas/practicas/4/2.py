@@ -22,7 +22,8 @@ Fin
 
 def main():
     numeros = int(input("¿Hasta qué número quieres contar?: "))
-    print()
+    print() 
+
     for num in range(1, numeros + 1):
         print(num)
 
